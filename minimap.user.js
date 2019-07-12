@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YZ Minimap
 // @namespace    http://tampermonkey.net/
-// @version      1.2.5
+// @version      1.2.6
 // @description  A gift to Yellowzone
 // @author       General eksotik#3558
 // @match        https://pixelzone.io/*
