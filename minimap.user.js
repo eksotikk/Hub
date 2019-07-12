@@ -11,6 +11,17 @@
 // @downloadURL  https://raw.githubusercontent.com/eksotikk/YellowZone-Minimap/master/minimap.user.js
 // @grant        none
 // ==/UserScript==
+  //Show message
+  setTimeout(function() {
+    gameWindow.nextElementSibling.className="fadeIn";
+    gameWindow.nextElementSibling.style.display="block";
+    timerDiv.innerText = "Kolay gelsin. -eksotik";
+    timerDiv.style.width = "60%";
+  }, 500);
+  setTimeout(function() {
+    gameWindow.nextElementSibling.style.display="none";
+    timerDiv.style.width = "50px";
+  }, 8000);
 
 Number.prototype.between = function(a, b) {
   var min = Math.min.apply(Math, [a, b]),
@@ -399,132 +410,5 @@ function findCoor() {
         }
     });*/
     coorDOM = document.getElementById("coords");
-    var x, y, zoomlevel, zooming_out, zooming_in, zoom_time, x_window, y_window, coorDOM, gameWindow;
-var toggle_show, toggle_follow, counter, image_list, needed_templates, mousemoved;
-var minimap,	minimap_board, minimap_cursor, minimap_box, minimap_text;
-var ctx_minimap, ctx_minimap_board, ctx_minimap_cursor;
-//Regular Expression to get coordinates out of URL
-var re_url = /\?p=([-\d]+),([-\d]+)/;
-var timerDiv;
+    
 
-
-
-  console.log(vers+". TemplateUrl", baseTemplateUrl);
-  console.log("Try: listTemplates() and keys H, QWERTYUIOP[ ASDFG, X");
-  gameWindow = document.getElementById("canvas");
-  //DOM element of the displayed X, Y
-  coorDOM = document.getElementById("coords");
-  //coordinates of the middle of the window
-  x_window = y_window = 0;
-  //coordinates of cursor
-  x = y = 0;
-  //list of all available templates
-  window.template_list = null;
-  zoomlevel = 14;
-  //toggle options
-  toggle_show = false;
-  toggle_follow = true; //if minimap is following window, x_window = x and y_window = y;
-  zooming_in = zooming_out = false;
-  zoom_time = 100;
-  //array with all loaded template-images
-  window.image_list = [];
-  counter = 0;
-  //templates which are needed in the current area
-  needed_templates = null;
-  //Cachebreaker to force image refresh. Set it to eg. 1
-  window.cachebreaker = "";
-  timerDiv = document.getElementById("timer");
-  minimap_box = document.getElementById("minimap-box");
-  minimap_text = document.getElementById("minimap-text");
-
-  //Show message
-  setTimeout(function() {
-    gameWindow.nextElementSibling.className="fadeIn";
-    gameWindow.nextElementSibling.style.display="block";
-    timerDiv.innerText = "Kolay gelsin. -eksotik";
-    timerDiv.style.width = "60%";
-  }, 500);
-  setTimeout(function() {
-    gameWindow.nextElementSibling.style.display="none";
-    timerDiv.style.width = "50px";
-  }, 8000);
-
-window.addEventListener('keydown', function(e) {
-  switch(e.keyCode) {//e.key is too national
-    case 72: //H
-      toggleShow();
-      break;
-    case 81: clickColor(0); break; //black is 1
-    case 87: clickColor(1); break; //dark gray is 0
-    case 69: clickColor(2); break;
-    case 82: clickColor(3); break;
-    case 84: clickColor(4); break;
-    case 89: clickColor(5); break;
-    case 85: clickColor(6); break;
-    case 73: clickColor(7); break;
-    case 79: clickColor(8); break;
-    case 80: clickColor(9); break;
-    case 221: clickColor(10); break;
-    case 65: clickColor(11); break;
-    case 83: clickColor(12); break;
-    case 68: clickColor(13); break;
-    case 70: clickColor(14); break;
-    case 71: clickColor(15); break;
-    case 107: //numpad +
-      zooming_in = true;
-      zooming_out = false;
-      zoomIn();
-      zooming_in = false;
-      break;
-    case 109: //numpad -
-      zooming_out = true;
-      zooming_in = false;
-      zoomOut();
-      zooming_out = false;
-      break;
-    case 88: //x: hide more elements
-      var menu = gameWindow.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
-      var coords = menu.nextElementSibling.nextElementSibling;
-      var playercount = coords.nextElementSibling;
-      if(menu.style.display != "none") {
-        menu.style.display = "none";
-      } else if(playercount.style.display != "none"){ //hide counter
-        playercount.style.display = "none";
-      } else {
-        coords.style.display = "none";
-      }
-      break;
-    default:
-      console.log("keydown", e.keyCode, e.key);
-  }
-});
-
-function clickColor(c) {
-  var pal = document.getElementById("palette");
-  //https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/MouseEvent
-  var e = new MouseEvent("click", {
-    bubbles: true,
-    offsetX: pal.offsetLeft+4,
-    offsetY: pal.offsetTop+4
-  });
-  var target = pal.childNodes[parseInt(c/8)].childNodes[c % 8];
-  target.dispatchEvent(e);
-}
-
-window.setCookie = function(name,value) { //you can supply "minutes" as 3rd arg.
-  var argv = setCookie.arguments;
-  var argc = setCookie.arguments.length;
-  var minutes = (argc > 2) ? argv[2] : 720*24*60; //default 720 days
-  var date = new Date();
-  date.setTime(date.getTime()+(minutes*60*1000));
-  var expires = "; expires="+date.toGMTString();
-  document.cookie = name+"="+value+expires+"; path=/";
-}
-
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-}
