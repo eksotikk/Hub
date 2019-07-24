@@ -1,27 +1,16 @@
 // ==UserScript==
-// @name         YZ Minimap
+// @name         LydiaHub
 // @namespace    http://tampermonkey.net/
-// @version      1.2.6
-// @description  A gift to Yellowzone
-// @author       General eksotik#3558
+// @version      1.2.5
+// @description  stalklama sikerim belanı yavşak
+// @author       eksotik
 // @match        https://pixelzone.io/*
 // @match        http://pixelzone.io/*
-// @homepage     https://github.com/eksotikk/YellowZone-Minimap/
-// @updateURL    https://raw.githubusercontent.com/eksotikk/YellowZone-Minimap/master/minimap.user.js
-// @downloadURL  https://raw.githubusercontent.com/eksotikk/YellowZone-Minimap/master/minimap.user.js
+// @homepage     https://github.com/eksotikk/Hub/
+// @updateURL    https://raw.githubusercontent.com/eksotikk/Hub/master/minimap.user.js
+// @downloadURL  https://raw.githubusercontent.com/eksotikk/Hub/master/minimap.user.js
 // @grant        none
 // ==/UserScript==
-  //Show message
-  setTimeout(function() {
-    gameWindow.nextElementSibling.className="fadeIn";
-    gameWindow.nextElementSibling.style.display="block";
-    timerDiv.innerText = "Kolay gelsin. -eksotik";
-    timerDiv.style.width = "60%";
-  }, 500);
-  setTimeout(function() {
-    gameWindow.nextElementSibling.style.display="none";
-    timerDiv.style.width = "50px";
-  }, 8000);
 
 Number.prototype.between = function(a, b) {
   var min = Math.min.apply(Math, [a, b]),
@@ -29,7 +18,7 @@ Number.prototype.between = function(a, b) {
   return this > min && this < max;
 };
 var range = 25;
-window.baseTepmlateUrl = 'https://raw.githubusercontent.com/eksotikk/YellowZone-Minimap/master/';
+window.baseTepmlateUrl = 'https://raw.githubusercontent.com/eksotikk/Hub/master/';
 
 window.addEventListener('load', function () {
     //Regular Expression to get coordinates out of URL
@@ -66,7 +55,7 @@ window.addEventListener('load', function () {
     var div = document.createElement('div');
     div.setAttribute('class', 'post block bc2');
     div.innerHTML = '<style>.grecaptcha-badge{display: none;}</style>   <div id="minimapbg" style="position: absolute; right: 1em; bottom: 1em;">' +
-        '<div class="posy" id="posyt" style="background-color: rgba(255, 255, 0, 0.75); color: rgb(255, 255, 255); text-align: center; line-height: 30px; vertical-align: middle; width: auto; height: auto; border-radius: 0px; padding: 2px;">' +
+        '<div class="posy" id="posyt" style="background-color: rgba(0, 0, 0, 0.75); color: rgb(255, 255, 0); text-align: center; line-height: 30px; vertical-align: middle; width: auto; height: auto; border-radius: 0px; padding: 2px;">' +
         '<div id="minimap-text" style="display: none;"></div>' +
         '<div id="minimap-box" style="position: relative;width:375px;height:275px">' +
         '<canvas id="minimap" style="width: 100%; height: 100%;z-index:1;position:absolute;top:0;left:0;"></canvas>' +
