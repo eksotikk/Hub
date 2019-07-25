@@ -66,7 +66,7 @@ window.addEventListener('load', function () {
         '</span> | Zoom: <span id="zoom-plus" style="cursor:pointer;font-weight:bold;">+</span>  /  ' +
         '<span id="zoom-minus" style="cursor:pointer;font-weight:bold;">-</span>' +
         '</div><div id="minimap-tittle" style="line-height:15px;">' +
-        '<span id="minimap-tr" style="font-weight:bold;text-align:center;"> ℂ⋆ Turkey Zone ℂ⋆' +
+        '<span id="minimap-tr" style="font-weight:bold;text-align:center;"> LydiaHub' +
         '</div>' +
         '</div>';
     document.body.appendChild(div);
